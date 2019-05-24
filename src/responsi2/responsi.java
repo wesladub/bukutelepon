@@ -16,7 +16,7 @@ public class responsi {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Scanner str = new Scanner(System.in);
-        int pil = 0, jumdat = 0;
+        int pil = 0, jumdat = 0, ubah = 0;
         String data[][] = new String[50][4];
 
         do {
@@ -69,6 +69,21 @@ public class responsi {
                         }
                         System.out.println("=============================");
                     }
+                    break;
+                case 3:
+                    System.out.print("Silahkan pilih nomor data yang akan diubah : ");
+                    ubah = input.nextInt();
+                    int s = 0;
+                    System.out.printf("%-16s %-1s", "Masukkan Nama", ": ");
+                    data[ubah - 1][s] = str.nextLine();
+                    System.out.printf("%-16s %-1s", "Masukkan Alamat", ": ");
+                    data[ubah - 1][s + 1] = str.nextLine();
+                    System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
+                    data[ubah - 1][s + 2] = str.nextLine();
+                    System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
+                    data[ubah - 1][s + 3] = str.nextLine();
+                    System.out.println("=============================");
+                    System.out.println("    Data berhasil diubah     ");
                     break;
             }
             System.out.println("");
