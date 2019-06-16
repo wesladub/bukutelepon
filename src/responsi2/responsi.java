@@ -40,10 +40,20 @@ public class responsi {
                     data[jumdat][p] = str.nextLine();
                     System.out.printf("%-16s %-1s", "Masukkan Alamat", ": ");
                     data[jumdat][p + 1] = str.nextLine();
-                    System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
-                    data[jumdat][p + 2] = str.nextLine();
-                    System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
-                    data[jumdat][p + 3] = str.nextLine();
+                    do {
+                        System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
+                        data[jumdat][p + 2] = str.nextLine();
+                        if (!data[jumdat][p + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}")) {
+                            System.out.println("Invalid number");
+                        }
+                    } while (!data[jumdat][p + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}"));
+                    do {
+                        System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
+                        data[jumdat][p + 3] = str.nextLine();
+                        if (!data[jumdat][p + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
+                            System.out.println("Invalid email");
+                        }
+                    } while (!data[jumdat][p + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"));
                     System.out.println("=============================");
                     System.out.println("  Data berhasil ditambahkan");
                     jumdat += 1;
@@ -79,10 +89,20 @@ public class responsi {
                     data[ubah - 1][s] = str.nextLine();
                     System.out.printf("%-16s %-1s", "Masukkan Alamat", ": ");
                     data[ubah - 1][s + 1] = str.nextLine();
-                    System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
-                    data[ubah - 1][s + 2] = str.nextLine();
-                    System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
-                    data[ubah - 1][s + 3] = str.nextLine();
+                    do {
+                        System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
+                        data[ubah - 1][s + 2] = str.nextLine();
+                        if (!data[ubah - 1][s + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}")) {
+                            System.out.println("Invalid number");
+                        }
+                    } while (!data[ubah - 1][s + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}"));
+                    do {
+                        System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
+                        data[ubah - 1][s + 3] = str.nextLine();
+                        if (!data[ubah - 1][s + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
+                            System.out.println("Invalid email");
+                        }
+                    } while (!data[ubah - 1][s + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"));
                     System.out.println("=============================");
                     System.out.println("    Data berhasil diubah     ");
                     break;
@@ -124,7 +144,7 @@ public class responsi {
                                     System.out.println(data[z][j]);
                                 }
                                 System.out.println("=============================");
-                            } 
+                            }
                         }
                     }
                     break;
