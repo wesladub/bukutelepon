@@ -1,15 +1,23 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package responsi2;
 
 import java.util.Scanner;
 
-
+/**
+ *
+ * @author GiriD
+ */
 public class responsi {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Scanner str = new Scanner(System.in);
-        int pil = 0, jumdat = 0, ubah = 0, s = 0, hapus = 0;
+        int pil = 0, jumdat = 0, ubah = 0, s = 0, hapus = 0, ins = 0;
+        String que = "", nomor = "", nama, alamat, email;
         String data[][] = new String[50][4];
 
         do {
@@ -23,33 +31,62 @@ public class responsi {
             System.out.println("******************************");
             System.out.print("Masukkan Pilihan Anda : ");
             pil = input.nextInt();
-
+            ins = 0;
             switch (pil) {
                 case 1:
                     System.out.println("\nMenambah data baru");
                     System.out.println("=============================");
                     int p = 0;
                     System.out.printf("%-16s %-1s", "Masukkan Nama", ": ");
-                    data[jumdat][p] = str.nextLine();
+                    nama = str.nextLine();
                     System.out.printf("%-16s %-1s", "Masukkan Alamat", ": ");
-                    data[jumdat][p + 1] = str.nextLine();
+                    alamat = str.nextLine();
+
                     do {
-                        System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
-                        data[jumdat][p + 2] = str.nextLine();
-                        if (!data[jumdat][p + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}")) {
-                            System.out.println("Invalid number");
+                        que = "n";
+                        ins = 0;
+                        do {
+                            System.out.printf("%-16s %-1s", "Masukkan No.Telp", ": ");
+                            nomor = str.nextLine();
+                            if (!nomor.matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}")) {
+                                System.out.println("Invalid number");
+                            }
+                        } while (!nomor.matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}"));
+                        
+                        for (int z = 0; z < jumdat; z++) {
+                            int q = 2;
+                            if (nomor.matches(data[z][q]) == true) {
+                                System.out.println("Nomor telepon telah terdaftar, Ubah nomor telepon ? (y/n)");
+                                que = str.nextLine();
+                                ins = 1;
+                            }
                         }
-                    } while (!data[jumdat][p + 2].matches("[0]{1}[8]{1}[123579]{1}[0-9]{9,10}"));
+                    } while (que.equalsIgnoreCase("y"));
+
+                    if (ins == 0) {
+                        data[jumdat][p] = nama;
+                        data[jumdat][p + 1] = alamat;
+                        data[jumdat][p + 2] = nomor;
+                    } else {
+                        System.out.println("  Batal menambah data");
+                        break;
+                    }
+
                     do {
                         System.out.printf("%-16s %-1s", "Masukkan Email", ": ");
-                        data[jumdat][p + 3] = str.nextLine();
-                        if (!data[jumdat][p + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
+                        email = str.nextLine();
+                        if (!email.matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
                             System.out.println("Invalid email");
                         }
-                    } while (!data[jumdat][p + 3].matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"));
+                    } while (!email.matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"));
+                    
                     System.out.println("=============================");
-                    System.out.println("  Data berhasil ditambahkan");
-                    jumdat += 1;
+                    if (ins == 0) {
+                        data[jumdat][p + 3] = email;
+                        System.out.println("  Data berhasil ditambahkan");
+                        jumdat += 1;
+                    }
+
                     break;
                 case 2:
                     for (int i = 0; i < jumdat; i++) {
